@@ -5,7 +5,7 @@
 
     <insert id="insertUser">
         <selectKey resultType="int" keyProperty="userId" order="BEFORE">
-            SELECT MAX(user_id)+1 FROM tb_user
+            SELECT IFNULL(MAX(user_id),0)+1 FROM tb_user
         </selectKey>
         INSERT INTO tb_user (
         user_id,
@@ -24,7 +24,7 @@
         )
     </insert>
 
-    <select id="selectUser">
+    <select id="selectUser" resultType="com.prisoncrush.api.model.User">
         SELECT
         user_id AS userId,
         account_id AS accountId,
@@ -39,18 +39,20 @@
     </select>
 
     <delete id="deleteUser">
-        delete tb_user
+        delete FROM tb_user
         WHERE user_id = #{userId}
     </delete>
 
     <select id="updateUser">
         update tb_user
         SET
-        coin = #{user.coin},
-        prison_key = #{user.prisonKey},
+        <if test="user.coin != null">
+            coin = #{user.coin},
+        </if>
+        <if test="user.prisonKey != null">
+            prison_key = #{user.prisonKey},
+        </if>
         modify_ymdt = NOW()
-        FROM
-        tb_user
         WHERE
         user_id = #{user.userId}
     </select>

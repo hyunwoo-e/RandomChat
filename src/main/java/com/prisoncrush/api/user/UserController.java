@@ -33,10 +33,11 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<String> update(@RequestParam(required = true) @Valid User user, BindingResult bindingResult) throws Exception {
+    public ResponseEntity<String> update(@Valid User user, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
             throw new Exception();
         }
+
         userBO.updateUser(user);
         return new ResponseEntity("", HttpStatus.OK);
     }
