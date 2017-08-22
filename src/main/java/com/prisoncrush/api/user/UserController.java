@@ -7,46 +7,40 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import sun.rmi.runtime.Log;
 
 import javax.validation.Valid;
 
-@Controller
+@RestController
 public class UserController {
 
     @Autowired
     UserBO userBO;
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity<String> create(@RequestParam(required = true) String accountId) {
+    public void create(@RequestParam(required = true) String accountId) {
         userBO.insertUser(accountId);
-        return new ResponseEntity("", HttpStatus.OK);
+        return;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseEntity<User> select(@RequestParam(required = true) String accountId) {
-        User user = userBO.selectUser(accountId);
-        return new ResponseEntity(user, HttpStatus.OK);
+    public User select(@RequestParam(required = true) String accountId) {
+        return userBO.selectUser(accountId);
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.PUT)
-    @ResponseBody
-    public ResponseEntity<String> update(@Valid User user, BindingResult bindingResult) throws Exception {
+    public void update(@Valid User user, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
             throw new Exception();
         }
 
         userBO.updateUser(user);
-        return new ResponseEntity("", HttpStatus.OK);
+        return;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.DELETE)
-    @ResponseBody
-    public ResponseEntity<String> delete(@RequestParam(required = true) String userId) {
+    public void delete(@RequestParam(required = true) String userId) {
         userBO.deleteUser(userId);
-        return new ResponseEntity("", HttpStatus.OK);
+        return;
     }
 
     //TODO: GlobalExceptionHandler 적용

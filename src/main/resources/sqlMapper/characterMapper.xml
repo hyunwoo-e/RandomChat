@@ -1,20 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.prisoncrush.api.character.characterDAO">
-    <insert id="insertUserCharacterMap">
-      INSERT INTO tb_user_character_map (
+<mapper namespace="com.prisoncrush.api.character.CharacterDAO">
+
+	<resultMap id="UserCharacters" type="com.prisoncrush.api.model.Character">
+		<id property="userId" column="userId"/>
+		<id property="characterId" column="characterId"/>
+		<result property="characterName" column="characterName"/>
+		<result property="story" column="story"/>
+		<result property="imageUrl" column="imageUrl"/>
+		<result property="tier" column="tier"/>
+		<collection property="skills" column="{userId=userId,characterId=characterId}" javaType="java.util.ArrayList"
+					ofType="com.prisoncrush.api.model.Skill" select="selectUserCharacterSkills"/>
+	</resultMap>
+
+    <insert id="insertUserCharacter">
+		INSERT INTO tb_user_character_map (
       	user_id,
       	character_id,
       	regist_ymdt,
       	modify_ymdt
-      ) VALUES (
-      	#{userId},
-      	#{characterId},
+      	)
+      	SELECT
+      	u.user_id,
+      	c.character_id,
       	NOW(),
       	NOW()
-      )
+      	FROM
+      	tb_user u, tb_character c
+      	WHERE
+      	u.user_id = #{userId}
+      	AND
+      	c.character_id = #{characterId}
     </insert>
+
+	<select id="selectUserCharacters" resultMap="UserCharacters">
+		SELECT
+		m.user_id AS userId,
+		c.character_id AS characterId,
+		c.character_name AS characterName,
+		c.story AS story,
+		c.image_url AS imageUrl,
+		c.tier AS tier
+		FROM
+		tb_user_character_map m, tb_character c
+		WHERE
+		m.user_id = #{userId}
+		AND
+		c.character_id = m.character_id
+	</select>
+
+	<select id="selectUserCharacterSkills" parameterType="java.util.Map" resultType="com.prisoncrush.api.model.Skill">
+		SELECT
+		s.skill_id AS skillId,
+		s.skill_name AS skillName,
+		s.jump AS jump,
+		s.coin_pickup AS coinPickUp,
+		s.bomb_shield AS bombShield
+		FROM
+		tb_user_character_skill_map m, tb_skill s
+		WHERE
+		m.user_id = #{userId}
+		AND
+		m.character_id = #{characterId}
+		AND
+		s.skill_id = m.skill_id
+	</select>
+
+	<delete id="deleteUserCharacter">
+		DELETE FROM tb_user_character_map
+        WHERE user_id = #{userId}
+        AND character_id = #{characterId}
+	</delete>
+
+	<delete id="deleteUserCharacterSkills">
+		DELETE FROM tb_user_character_skill_map
+		WHERE user_id = #{userId}
+        AND character_id = #{characterId}
+	</delete>
+
+
+
+
+
+
+
+
+
+
 
 	<update id="updateCharacterSkillMap">
 		UPDATE tb_character_skill_map (
@@ -27,24 +100,6 @@
 		NOW()
 		)
 	</update>
-
-	<select id="selectCharacters">
-		SELECT
-		u.user_id AS userId,
-		c.character_id AS characterId,
-		c.character_name AS characterName,
-		c.story AS story,
-		c.image_url AS imageUrl,
-		c.tier AS tier,
-		FROM
-		tb_user u, tb_user_character_map m, tb_character c
-		WHERE
-		u.user_id = #{userId}
-		AND
-		m.user_id = u.user_id
-		AND
-		c.character_id = m.character_id
-	</select>
 
 	<select id="selectCharacterSkill">
 		SELECT
