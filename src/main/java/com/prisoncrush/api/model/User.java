@@ -8,7 +8,7 @@ public class User {
     String userId;
     String accountId;
     Integer coin;
-    Integer prison_key;
+    Integer prisonKey;
     String registDate;
     String modifyDate;
 }
