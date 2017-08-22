@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prisoncrush.api.user.UserDAO">
+
+    <insert id="insertUser">
+        <selectKey resultType="int" keyProperty="userId" order="BEFORE">
+            SELECT MAX(user_id)+1 FROM tb_user
+        </selectKey>
+        INSERT INTO tb_user (
+        user_id,
+        account_id,
+        coin,
+        prison_key,
+        regist_ymdt,
+        modify_ymdt
+        ) VALUES (
+        #{userId},
+        #{accountId},
+        0,
+        0,
+        NOW(),
+        NOW()
+        )
+    </insert>
+
+    <select id="selectUser">
+        SELECT
+        user_id AS userId,
+        account_id AS accountId,
+        coin AS coin,
+        prison_key AS prisonKey,
+        regist_ymdt AS registDate,
+        modify_ymdt AS modifyDate
+        FROM
+        tb_user
+        WHERE
+        account_id = #{accountId}
+    </select>
+
+    <delete id="deleteUser">
+        delete tb_user
+        WHERE user_id = #{userId}
+    </delete>
+
+    <select id="updateUser">
+        update tb_user
+        SET
+        coin = #{user.coin},
+        prison_key = #{user.prisonKey},
+        modify_ymdt = NOW()
+        FROM
+        tb_user
+        WHERE
+        user_id = #{user.userId}
+    </select>
+</mapper>

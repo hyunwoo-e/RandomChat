@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prisoncrush.api.character.characterDAO">
+    <insert id="insertUserCharacterMap">
+      INSERT INTO tb_user_character_map (
+      	user_id,
+      	character_id,
+      	regist_ymdt,
+      	modify_ymdt
+      ) VALUES (
+      	#{userId},
+      	#{characterId},
+      	NOW(),
+      	NOW()
+      )
+    </insert>
+
+	<update id="updateCharacterSkillMap">
+		UPDATE tb_character_skill_map (
+		character_id,
+		skill_id,
+		modify_ymdt
+		) VALUES (
+		#{characterId},
+		#{skillId},
+		NOW()
+		)
+	</update>
+
+	<select id="selectCharacters">
+		SELECT
+		u.user_id AS userId,
+		c.character_id AS characterId,
+		c.character_name AS characterName,
+		c.story AS story,
+		c.image_url AS imageUrl,
+		c.tier AS tier,
+		FROM
+		tb_user u, tb_user_character_map m, tb_character c
+		WHERE
+		u.user_id = #{userId}
+		AND
+		m.user_id = u.user_id
+		AND
+		c.character_id = m.character_id
+	</select>
+
+	<select id="selectCharacterSkill">
+		SELECT
+		skill_id AS skillId,
+		skill_name AS skillName
+		FROM
+		tb_user_character_skill_map m, tb_skill s
+		WHERE
+	  	m.user_id = #{userId}
+	  	AND
+		m.character_id = #{chracterId}
+		AND
+		s.skill_id = m.skill_id
+	</select>
+</mapper>
