@@ -79,16 +79,6 @@
         AND character_id = #{characterId}
 	</delete>
 
-
-
-
-
-
-
-
-
-
-
 	<update id="updateCharacterSkillMap">
 		UPDATE tb_character_skill_map (
 		character_id,
