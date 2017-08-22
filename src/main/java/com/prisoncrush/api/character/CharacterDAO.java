@@ -1,6 +1,5 @@
 package com.prisoncrush.api.character;
-
-import com.prisoncrush.api.model.Character;
+import com.prisoncrush.api.model.UserCharacter;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +10,7 @@ public interface CharacterDAO {
 
     int insertUserCharacter(@Param("userId") int userId, @Param("characterId") int characterId);
 
-    List<Character> selectUserCharacters(@Param("userId") int userId);
+    List<UserCharacter> selectUserCharacters(@Param("userId") int userId);
 
     int updateUserCharacter(@Param("userId") int userId, @Param("characterId") int characterId);
 

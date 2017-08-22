@@ -1,6 +1,5 @@
 package com.prisoncrush.api.character;
-
-import com.prisoncrush.api.model.Character;
+import com.prisoncrush.api.model.UserCharacter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -18,7 +17,7 @@ public class CharacterController {
     }
 
     @RequestMapping(value = "/user/{userId}/characters", method = RequestMethod.GET)
-    public List<Character> selectUserCharacters(@PathVariable int userId) {
+    public List<UserCharacter> selectUserCharacters(@PathVariable int userId) {
         return characterBO.selectUserCharacters(userId);
     }
 

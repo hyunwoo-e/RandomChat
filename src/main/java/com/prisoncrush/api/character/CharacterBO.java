@@ -1,8 +1,6 @@
 package com.prisoncrush.api.character;
-
-import com.prisoncrush.api.model.Character;
+import com.prisoncrush.api.model.UserCharacter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +17,7 @@ public class CharacterBO {
         return characterDAO.insertUserCharacter(userId, characterId);
     }
 
-    public List<Character> selectUserCharacters(int userId) {
+    public List<UserCharacter> selectUserCharacters(int userId) {
         return characterDAO.selectUserCharacters(userId);
     }
 

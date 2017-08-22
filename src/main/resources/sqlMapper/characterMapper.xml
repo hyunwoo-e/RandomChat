@@ -3,7 +3,7 @@
 
 <mapper namespace="com.prisoncrush.api.character.CharacterDAO">
 
-	<resultMap id="UserCharacters" type="com.prisoncrush.api.model.Character">
+	<resultMap id="UserCharacters" type="com.prisoncrush.api.model.UserCharacter">
 		<id property="userId" column="userId"/>
 		<id property="characterId" column="characterId"/>
 		<result property="characterName" column="characterName"/>
