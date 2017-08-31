@@ -19,12 +19,12 @@ public class WeaponBO {
         return weaponDAO.selectUserWeapons(userId);
     }
 
-    public void updateUserWeapon(int userId, int weaponId) {
-        weaponDAO.updateUserWeapon(userId, weaponId);
+    public void updateUserWeapon(int userId, int weaponId, UserWeapon userWeapon) {
+        weaponDAO.updateUserWeapon(userId, weaponId, userWeapon);
     }
 
-    public void deleteUserWeapon(int userId, int weaponId, UserWeapon userWeapon) {
-        weaponDAO.deleteUserWeapon(userId, weaponId, userWeapon);
+    public void deleteUserWeapon(int userId, int weaponId) {
+        weaponDAO.deleteUserWeapon(userId, weaponId);
     }
 }
 

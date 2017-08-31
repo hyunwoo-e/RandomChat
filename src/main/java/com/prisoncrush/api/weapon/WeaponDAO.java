@@ -13,8 +13,8 @@ public interface WeaponDAO {
 
     List<UserWeapon> selectUserWeapons(@Param("userId") int userId);
 
-    int updateUserWeapon(@Param("userId") int userId, @Param("weaponId") int weaponId);
+    int updateUserWeapon(@Param("userId") int userId, @Param("weaponId") int weaponId, @Param("userWeapon") UserWeapon userWeapon);
 
-    int deleteUserWeapon(@Param("userId") int userId, @Param("weaponId") int weaponId, @Param("userWeapon") UserWeapon userWeapon);
+    int deleteUserWeapon(@Param("userId") int userId, @Param("weaponId") int weaponId);
 }
 

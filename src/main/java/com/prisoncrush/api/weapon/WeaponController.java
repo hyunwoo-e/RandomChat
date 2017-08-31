@@ -26,18 +26,18 @@ public class WeaponController {
     }
 
     @RequestMapping(value = "/user/{userId}/weapons/{weaponId}", method = RequestMethod.PUT)
-    public void updateUserWeapon(@PathVariable int userId, @PathVariable int weaponId) {
-        weaponBO.updateUserWeapon(userId, weaponId);
-        return;
-    }
-
-    @RequestMapping(value = "/user/{userId}/weapons/{weaponId}", method = RequestMethod.DELETE)
-    public void deleteUserWeapon(@PathVariable int userId, @PathVariable int weaponId, @Valid UserWeapon userWeapon, BindingResult bindingResult) throws Exception {
+    public void updateUserWeapon(@PathVariable int userId, @PathVariable int weaponId, @Valid UserWeapon userWeapon, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
             throw new Exception();
         }
 
-        weaponBO.deleteUserWeapon(userId, weaponId, userWeapon);
+        weaponBO.updateUserWeapon(userId, weaponId, userWeapon);
+        return;
+    }
+
+    @RequestMapping(value = "/user/{userId}/weapons/{weaponId}", method = RequestMethod.DELETE)
+    public void deleteUserWeapon(@PathVariable int userId, @PathVariable int weaponId) {
+        weaponBO.deleteUserWeapon(userId, weaponId);
         return;
     }
 
