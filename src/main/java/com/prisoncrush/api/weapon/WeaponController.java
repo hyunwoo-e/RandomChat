@@ -2,8 +2,10 @@ package com.prisoncrush.api.weapon;
 
 import com.prisoncrush.api.model.UserWeapon;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,8 +32,12 @@ public class WeaponController {
     }
 
     @RequestMapping(value = "/user/{userId}/weapons/{weaponId}", method = RequestMethod.DELETE)
-    public void deleteUserWeapon(@PathVariable int userId, @PathVariable int weaponId) {
-        weaponBO.deleteUserWeapon(userId, weaponId);
+    public void deleteUserWeapon(@PathVariable int userId, @PathVariable int weaponId, @Valid UserWeapon userWeapon, BindingResult bindingResult) throws Exception {
+        if(bindingResult.hasErrors()) {
+            throw new Exception();
+        }
+
+        weaponBO.deleteUserWeapon(userId, weaponId, userWeapon);
         return;
     }
 

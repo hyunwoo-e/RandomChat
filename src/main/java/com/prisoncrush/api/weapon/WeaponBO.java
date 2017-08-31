@@ -23,8 +23,8 @@ public class WeaponBO {
         weaponDAO.updateUserWeapon(userId, weaponId);
     }
 
-    public void deleteUserWeapon(int userId, int weaponId) {
-        weaponDAO.deleteUserWeapon(userId, weaponId);
+    public void deleteUserWeapon(int userId, int weaponId, UserWeapon userWeapon) {
+        weaponDAO.deleteUserWeapon(userId, weaponId, userWeapon);
     }
 }
 
