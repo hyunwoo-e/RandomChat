@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prisoncrush.api.weapon.WeaponDAO">
+    <insert id="insertUserWeapon">
+        INSERT INTO tb_user_weapon (
+        user_id,
+        weapon_id,
+        damage,
+        damage_level,
+        critical_damage,
+        critical_damage_level,
+        critical_probability,
+        critical_probability_level,
+        regist_ymdt,
+        modify_ymdt
+        )
+        SELECT
+        #{userId},
+        #{weaponId},
+        damage,
+        1,
+        critical_damage,
+        1,
+        critical_probability,
+        1,
+        NOW(),
+        NOW(),
+        FROM
+        tb_weapon
+        WHERE
+        weapon_id = #{weaponId}
+    </insert>
+
+    <select id="selectUserWeapons" resultType="com.prisoncrush.api.model.weapon">
+        SELECT
+        user_id AS userid,
+        weapon_id AS weaponId,
+        damage AS damage,
+        damage_level AS damageLevel,
+        critical_damage AS criticalDamage,
+        critical_damage_level AS criticalDamgageLevel,
+        critical_probability AS criticalProbability,
+        critical_probability_level AS criticalProbabilityLevel
+        FROM
+        tb_user_weapon_map
+        WHERE
+        user_id = #{userId}
+    </select>
+
+    <delete id="deleteUserWeapon">
+        delete FROM tb_user_weapon_map
+        WHERE user_id = #{userId}
+        AND weapon_id = #{weaponId}
+    </delete>
+
+    <select id="updateUserWeapon" parameterType="com.prisoncrush.api.model.UserWeapon">
+        update tb_user_weapon_map
+        SET
+        <if test="userWeapon.damageLevel != null">
+            damage_level = #{userWeapon.damageLevel},
+        </if>
+        <if test="userWeapon.criticalLevel != null">
+            critical_level = #{userWeapon.criticalLevel},
+        </if>
+        <if test="userWeapon.criticalProbabilityLevel != null">
+            critical_probability_level = #{userWeapon.criticalProbabilityLevel},
+        </if>
+        modify_ymdt = NOW()
+        WHERE
+        user_id = #{userId}
+        AND
+        weapon_id = #{weapon.weaponId}
+    </select>
+</mapper>
