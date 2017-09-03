@@ -36,8 +36,7 @@ public class CharacterController {
 
     //TODO: GlobalExceptionHandler 적용
     @ExceptionHandler(Exception.class)
-    public void globalExceptionHandler(Exception e){
+    public void globalExceptionHandler(Exception e) {
 
     }
 }
-
