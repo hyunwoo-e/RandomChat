@@ -14,7 +14,7 @@ public class WeaponController {
     @Autowired
     WeaponBO weaponBO;
 
-    @RequestMapping(value = "/user/{userId}/weapons", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{userId}/weapons/create", method = RequestMethod.POST)
     public void insertUserWeapon(@PathVariable int userId, @RequestParam(required = true) int weaponId) {
         weaponBO.insertUserWeapon(userId, weaponId);
         return;
@@ -25,7 +25,7 @@ public class WeaponController {
         return weaponBO.selectUserWeapons(userId);
     }
 
-    @RequestMapping(value = "/user/{userId}/weapons/{weaponId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/user/{userId}/weapons/{weaponId}/update", method = RequestMethod.POST)
     public void updateUserWeapon(@PathVariable int userId, @PathVariable int weaponId, @Valid UserWeapon userWeapon, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
             throw new Exception();
@@ -35,7 +35,7 @@ public class WeaponController {
         return;
     }
 
-    @RequestMapping(value = "/user/{userId}/weapons/{weaponId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{userId}/weapons/{weaponId}/delete", method = RequestMethod.POST)
     public void deleteUserWeapon(@PathVariable int userId, @PathVariable int weaponId) {
         weaponBO.deleteUserWeapon(userId, weaponId);
         return;

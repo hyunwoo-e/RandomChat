@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDAO {
 
-    int insertUser(@Param("accountId") String accountId);
+    int insertUser(@Param("userId") String userId);
 
-    User selectUser(@Param("accountId") String accountId);
+    User selectUser(@Param("userId") String userId);
 
     int updateUser(@Param("user") User user);
 

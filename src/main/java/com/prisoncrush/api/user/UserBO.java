@@ -10,12 +10,12 @@ public class UserBO {
     @Autowired
     UserDAO userDAO;
 
-    public int insertUser(String accountId) {
-        return userDAO.insertUser(accountId);
+    public int insertUser(String userId) {
+        return userDAO.insertUser(userId);
     }
 
-    public User selectUser(String accountId) {
-        return userDAO.selectUser(accountId);
+    public User selectUser(String userId) {
+        return userDAO.selectUser(userId);
     }
     public void updateUser(User user) {
         userDAO.updateUser(user);

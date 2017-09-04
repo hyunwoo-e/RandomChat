@@ -10,7 +10,7 @@ public class CharacterController {
     @Autowired
     CharacterBO characterBO;
 
-    @RequestMapping(value = "/user/{userId}/characters", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{userId}/characters/create", method = RequestMethod.POST)
     public void insertUserCharacter(@PathVariable int userId, @RequestParam(required = true) int characterId) {
         characterBO.insertUserCharacter(userId, characterId);
         return;
@@ -22,13 +22,13 @@ public class CharacterController {
     }
 
     //TODO: 스킬 변경 및 추가 기능
-    @RequestMapping(value = "/user/{userId}/characters/{characterId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/user/{userId}/characters/{characterId}/update", method = RequestMethod.POST)
     public void updateUserCharacter(@PathVariable int userId, @PathVariable int characterId) {
         characterBO.updateUserCharacter(userId, characterId);
         return;
     }
 
-    @RequestMapping(value = "/user/{userId}/characters/{characterId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/{userId}/characters/{characterId}/delete", method = RequestMethod.POST)
     public void deleteUserCharacter(@PathVariable int userId, @PathVariable int characterId) {
         characterBO.deleteUserCharacter(userId, characterId);
         return;

@@ -16,18 +16,18 @@ public class UserController {
     @Autowired
     UserBO userBO;
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public void create(@RequestParam(required = true) String accountId) {
-        userBO.insertUser(accountId);
+    @RequestMapping(value = "/user/create", method = RequestMethod.POST)
+    public void create(@RequestParam(required = true) String userId) {
+        userBO.insertUser(userId);
         return;
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public User select(@RequestParam(required = true) String accountId) {
-        return userBO.selectUser(accountId);
+    public User select(@RequestParam(required = true) String userId) {
+        return userBO.selectUser(userId);
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @RequestMapping(value = "/user/update", method = RequestMethod.POST)
     public void update(@Valid User user, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
             throw new Exception();
@@ -37,7 +37,7 @@ public class UserController {
         return;
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/user/delete", method = RequestMethod.POST)
     public void delete(@RequestParam(required = true) String userId) {
         userBO.deleteUser(userId);
         return;

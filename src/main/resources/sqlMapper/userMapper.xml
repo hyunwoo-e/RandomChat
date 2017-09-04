@@ -4,19 +4,14 @@
 <mapper namespace="com.prisoncrush.api.user.UserDAO">
 
     <insert id="insertUser">
-        <selectKey resultType="int" keyProperty="userId" order="BEFORE">
-            SELECT IFNULL(MAX(user_id),0)+1 FROM tb_user
-        </selectKey>
         INSERT INTO tb_user (
         user_id,
-        account_id,
         coin,
         prison_key,
         regist_ymdt,
         modify_ymdt
         ) VALUES (
         #{userId},
-        #{accountId},
         0,
         0,
         NOW(),
@@ -27,7 +22,6 @@
     <select id="selectUser" resultType="com.prisoncrush.api.model.User">
         SELECT
         user_id AS userId,
-        account_id AS accountId,
         coin AS coin,
         prison_key AS prisonKey,
         regist_ymdt AS registDate,
@@ -35,7 +29,7 @@
         FROM
         tb_user
         WHERE
-        account_id = #{accountId}
+        user_id = #{userId}
     </select>
 
     <delete id="deleteUser">
