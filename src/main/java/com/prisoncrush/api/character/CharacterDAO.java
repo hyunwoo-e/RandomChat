@@ -8,14 +8,16 @@ import java.util.List;
 @Repository
 public interface CharacterDAO {
 
-    int insertUserCharacter(@Param("userId") int userId, @Param("characterId") int characterId);
+    int insertUserCharacter(@Param("userId") String userId, @Param("characterId") String characterId);
 
-    List<UserCharacter> selectUserCharacters(@Param("userId") int userId);
+    List<UserCharacter> selectUserCharacters(@Param("userId") String userId);
 
-    int updateUserCharacter(@Param("userId") int userId, @Param("characterId") int characterId);
+    int deleteUserCharacter(@Param("userId") String userId, @Param("characterId") String characterId);
 
-    int deleteUserCharacter(@Param("userId") int userId, @Param("characterId") int characterId);
+    int deleteUserCharacterSkills(@Param("userId") String userId, @Param("characterId") String characterId);
 
-    int deleteUserCharacterSkills(@Param("userId") int userId, @Param("characterId") int characterId);
+    int insertUserCharacterSkill(@Param("userId") String userId, @Param("characterId") String characterId, @Param("skillId") String skillId);
+
+    int deleteUserCharacterSkill(@Param("userId") String userId, @Param("characterId") String characterId, @Param("skillId") String skillId);
 }
 

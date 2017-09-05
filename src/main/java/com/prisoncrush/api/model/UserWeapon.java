@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class UserWeapon {
-    int userId;
-    int weaponId;
+    String userId;
+    String weaponId;
     int damageLevel;
     int criticalLevel;
     int probabilityLevel;

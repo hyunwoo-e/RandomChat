@@ -7,12 +7,11 @@ import java.util.List;
 
 @Data
 public class UserCharacter {
-    int userId;
-    int characterId;
-    String characterName;
+    String userId;
+    String characterId;
     String story;
     String imageUrl;
     int tier;
-    List<Skill> skills;
+    List<String> skills;
 }
 

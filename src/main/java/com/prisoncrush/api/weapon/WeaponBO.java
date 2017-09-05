@@ -11,19 +11,19 @@ public class WeaponBO {
     @Autowired
     WeaponDAO weaponDAO;
 
-    public int insertUserWeapon(int userId, int weaponId) {
+    public int insertUserWeapon(String userId, String weaponId) {
         return weaponDAO.insertUserWeapon(userId, weaponId);
     }
 
-    public List<UserWeapon> selectUserWeapons(int userId) {
+    public List<UserWeapon> selectUserWeapons(String userId) {
         return weaponDAO.selectUserWeapons(userId);
     }
 
-    public void updateUserWeapon(int userId, int weaponId, UserWeapon userWeapon) {
+    public void updateUserWeapon(String userId, String weaponId, UserWeapon userWeapon) {
         weaponDAO.updateUserWeapon(userId, weaponId, userWeapon);
     }
 
-    public void deleteUserWeapon(int userId, int weaponId) {
+    public void deleteUserWeapon(String userId, String weaponId) {
         weaponDAO.deleteUserWeapon(userId, weaponId);
     }
 }

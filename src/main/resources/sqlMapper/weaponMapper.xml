@@ -12,21 +12,19 @@
         regist_ymdt,
         modify_ymdt
         )
-        SELECT
+        VALUES
+        (
         #{userId},
         #{weaponId},
         1,
         1,
         1,
         NOW(),
-        NOW(),
-        FROM
-        tb_weapon
-        WHERE
-        weapon_id = #{weaponId}
+        NOW()
+        )
     </insert>
 
-    <select id="selectUserWeapons" resultType="com.prisoncrush.api.model.weapon">
+    <select id="selectUserWeapons" resultType="com.prisoncrush.api.model.UserWeapon">
         SELECT
         user_id AS userid,
         weapon_id AS weaponId,

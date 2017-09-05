@@ -6,12 +6,10 @@
 	<resultMap id="UserCharacters" type="com.prisoncrush.api.model.UserCharacter">
 		<id property="userId" column="userId"/>
 		<id property="characterId" column="characterId"/>
-		<result property="characterName" column="characterName"/>
 		<result property="story" column="story"/>
 		<result property="imageUrl" column="imageUrl"/>
 		<result property="tier" column="tier"/>
-		<collection property="skills" column="{userId=userId,characterId=characterId}" javaType="java.util.ArrayList"
-					ofType="com.prisoncrush.api.model.Skill" select="selectUserCharacterSkills"/>
+		<collection property="skills" column="{userId=userId,characterId=characterId}" javaType="java.util.ArrayList" select="selectUserCharacterSkills"/>
 	</resultMap>
 
     <insert id="insertUserCharacter">
@@ -22,49 +20,44 @@
       	modify_ymdt
       	)
       	SELECT
-      	u.user_id,
-      	c.character_id,
+      	usr.user_id,
+      	chr.character_id,
       	NOW(),
       	NOW()
       	FROM
-      	tb_user u, tb_character c
+      	tb_user usr, tb_character chr
       	WHERE
-      	u.user_id = #{userId}
+      	usr.user_id = #{userId}
       	AND
-      	c.character_id = #{characterId}
+      	chr.character_id = #{characterId}
     </insert>
 
 	<select id="selectUserCharacters" resultMap="UserCharacters">
 		SELECT
-		m.user_id AS userId,
-		c.character_id AS characterId,
-		c.character_name AS characterName,
-		c.story AS story,
-		c.image_url AS imageUrl,
-		c.tier AS tier
+		map.user_id AS userId,
+		chr.character_id AS characterId,
+		chr.story AS story,
+		chr.image_url AS imageUrl,
+		chr.tier AS tier
 		FROM
-		tb_user_character_map m, tb_character c
+		tb_user_character_map map, tb_character chr
 		WHERE
-		m.user_id = #{userId}
+		map.user_id = #{userId}
 		AND
-		c.character_id = m.character_id
+		chr.character_id = map.character_id
 	</select>
 
-	<select id="selectUserCharacterSkills" parameterType="java.util.Map" resultType="com.prisoncrush.api.model.Skill">
+	<select id="selectUserCharacterSkills">
 		SELECT
-		s.skill_id AS skillId,
-		s.skill_name AS skillName,
-		s.jump AS jump,
-		s.coin_pickup AS coinPickUp,
-		s.bomb_shield AS bombShield
+		sk.skill_id AS skillId,
 		FROM
-		tb_user_character_skill_map m, tb_skill s
+		tb_user_character_skill_map map, tb_skill sk
 		WHERE
-		m.user_id = #{userId}
+		map.user_id = #{userId}
 		AND
-		m.character_id = #{characterId}
+		map.character_id = #{characterId}
 		AND
-		s.skill_id = m.skill_id
+		sk.skill_id = map.skill_id
 	</select>
 
 	<delete id="deleteUserCharacter">
@@ -79,29 +72,26 @@
         AND character_id = #{characterId}
 	</delete>
 
-	<update id="updateCharacterSkillMap">
-		UPDATE tb_character_skill_map (
+	<delete id="deleteUserCharacterSkill">
+		DELETE FROM tb_user_character_skill_map
+		WHERE user_id = #{userId}
+		AND character_id = #{characterId}
+		AND skill_id = #{skillId}
+	</delete>
+
+	<insert id="insertUserCharacterSkill">
+		INSERT tb_character_skill_map (
+		user_id,
 		character_id,
 		skill_id,
+		regist_ymdt,
 		modify_ymdt
 		) VALUES (
+		#{userId},
 		#{characterId},
 		#{skillId},
+		NOW(),
 		NOW()
 		)
-	</update>
-
-	<select id="selectCharacterSkill">
-		SELECT
-		skill_id AS skillId,
-		skill_name AS skillName
-		FROM
-		tb_user_character_skill_map m, tb_skill s
-		WHERE
-	  	m.user_id = #{userId}
-	  	AND
-		m.character_id = #{chracterId}
-		AND
-		s.skill_id = m.skill_id
-	</select>
+	</insert>
 </mapper>

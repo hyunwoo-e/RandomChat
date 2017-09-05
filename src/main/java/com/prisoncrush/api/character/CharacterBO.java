@@ -13,21 +13,24 @@ public class CharacterBO {
     @Autowired
     CharacterDAO characterDAO;
 
-    public int insertUserCharacter(int userId, int characterId) {
+    public int insertUserCharacter(String userId, String characterId) {
         return characterDAO.insertUserCharacter(userId, characterId);
     }
 
-    public List<UserCharacter> selectUserCharacters(int userId) {
+    public List<UserCharacter> selectUserCharacters(String userId) {
         return characterDAO.selectUserCharacters(userId);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void updateUserCharacter(int userId, int characterId) {
-        characterDAO.updateUserCharacter(userId, characterId);
+    public void insertUserCharacterSkill(String userId, String characterId, String skillId) {
+        characterDAO.insertUserCharacterSkill(userId, characterId, skillId);
+    }
+
+    public void deleteUserCharacterSkill(String userId, String characterId, String skillId) {
+        characterDAO.deleteUserCharacterSkill(userId, characterId, skillId);
     }
 
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-    public void deleteUserCharacter(int userId, int characterId) {
+    public void deleteUserCharacter(String userId, String characterId) {
         characterDAO.deleteUserCharacter(userId, characterId);
         characterDAO.deleteUserCharacterSkills(userId, characterId);
     }

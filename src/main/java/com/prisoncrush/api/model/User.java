@@ -1,5 +1,6 @@
 package com.prisoncrush.api.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @Data

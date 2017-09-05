@@ -17,8 +17,9 @@ public class UserBO {
     public User selectUser(String userId) {
         return userDAO.selectUser(userId);
     }
-    public void updateUser(User user) {
-        userDAO.updateUser(user);
+
+    public void updateUser(String userId, int coin, int prisonKey) {
+        userDAO.updateUser(userId, coin, prisonKey);
     }
 
     public void deleteUser(String userId) {

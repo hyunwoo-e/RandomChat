@@ -9,12 +9,12 @@ import java.util.List;
 @Repository
 public interface WeaponDAO {
 
-    int insertUserWeapon(@Param("userId") int userId, @Param("weaponId") int weaponId);
+    int insertUserWeapon(@Param("userId") String userId, @Param("weaponId") String weaponId);
 
-    List<UserWeapon> selectUserWeapons(@Param("userId") int userId);
+    List<UserWeapon> selectUserWeapons(@Param("userId") String userId);
 
-    int updateUserWeapon(@Param("userId") int userId, @Param("weaponId") int weaponId, @Param("userWeapon") UserWeapon userWeapon);
+    int updateUserWeapon(@Param("userId") String userId, @Param("weaponId") String weaponId, @Param("userWeapon") UserWeapon userWeapon);
 
-    int deleteUserWeapon(@Param("userId") int userId, @Param("weaponId") int weaponId);
+    int deleteUserWeapon(@Param("userId") String userId, @Param("weaponId") String weaponId);
 }
 

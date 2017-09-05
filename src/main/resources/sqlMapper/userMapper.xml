@@ -23,9 +23,7 @@
         SELECT
         user_id AS userId,
         coin AS coin,
-        prison_key AS prisonKey,
-        regist_ymdt AS registDate,
-        modify_ymdt AS modifyDate
+        prison_key AS prisonKey
         FROM
         tb_user
         WHERE
@@ -40,14 +38,14 @@
     <select id="updateUser">
         update tb_user
         SET
-        <if test="user.coin != null">
-            coin = #{user.coin},
+        <if test="coin != null">
+            coin = #{coin},
         </if>
-        <if test="user.prisonKey != null">
-            prison_key = #{user.prisonKey},
+        <if test="prisonKey != null">
+            prison_key = #{prisonKey},
         </if>
         modify_ymdt = NOW()
         WHERE
-        user_id = #{user.userId}
+        user_id = #{userId}
     </select>
 </mapper>
