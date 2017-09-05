@@ -3,7 +3,7 @@
 
 <mapper namespace="com.prisoncrush.api.weapon.WeaponDAO">
     <insert id="insertUserWeapon">
-        INSERT INTO tb_user_weapon (
+        INSERT INTO tb_user_weapon_map (
         user_id,
         weapon_id,
         damage_level,
@@ -59,6 +59,6 @@
         WHERE
         user_id = #{userId}
         AND
-        weapon_id = #{weapon.weaponId}
+        weapon_id = #{weaponId}
     </select>
 </mapper>
