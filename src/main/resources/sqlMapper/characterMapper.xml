@@ -47,17 +47,15 @@
 		chr.character_id = map.character_id
 	</select>
 
-	<select id="selectUserCharacterSkills">
+	<select id="selectUserCharacterSkills" resultType="java.lang.String">
 		SELECT
-		sk.skill_id AS skillId,
+		skill_id AS skillId
 		FROM
-		tb_user_character_skill_map map, tb_skill sk
+		tb_user_character_skill_map
 		WHERE
-		map.user_id = #{userId}
+		user_id = #{userId}
 		AND
-		map.character_id = #{characterId}
-		AND
-		sk.skill_id = map.skill_id
+		character_id = #{characterId}
 	</select>
 
 	<delete id="deleteUserCharacter">
