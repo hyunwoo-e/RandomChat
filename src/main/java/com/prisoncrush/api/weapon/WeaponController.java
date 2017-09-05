@@ -27,7 +27,7 @@ public class WeaponController {
     }
 
     @RequestMapping(value = "/user/{userId}/weapons/{weaponId}/update", method = RequestMethod.POST)
-    public void updateUserWeapon(@PathVariable String userId, @PathVariable String weaponId, @RequestParam @Valid UserWeapon userWeapon, BindingResult bindingResult) throws Exception {
+    public void updateUserWeapon(@PathVariable String userId, @PathVariable String weaponId, @Valid UserWeapon userWeapon, BindingResult bindingResult) throws Exception {
         if(bindingResult.hasErrors()) {
             throw new Exception();
         }

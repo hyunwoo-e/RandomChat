@@ -3,7 +3,7 @@
 
 <mapper namespace="com.prisoncrush.api.rank.RankDAO">
 
-    <insert id="insertUserScore">
+    <insert id="insertUserRank">
 		INSERT INTO tb_rank (
       	score,
       	user_id,
@@ -17,7 +17,7 @@
       	)
     </insert>
 
-	<select id="selectRanks" resultMap="UserCharacters">
+	<select id="selectRanks" resultType="com.prisoncrush.api.model.Rank">
 		SELECT
 		score AS score,
 		user_id AS userId,

@@ -43,7 +43,7 @@
         AND weapon_id = #{weaponId}
     </delete>
 
-    <select id="updateUserWeapon" parameterType="com.prisoncrush.api.model.UserWeapon">
+    <update id="updateUserWeapon">
         update tb_user_weapon_map
         SET
         <if test="userWeapon.damageLevel != null">
@@ -60,5 +60,5 @@
         user_id = #{userId}
         AND
         weapon_id = #{weaponId}
-    </select>
+    </update>
 </mapper>
