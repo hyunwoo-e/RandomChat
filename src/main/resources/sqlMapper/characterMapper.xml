@@ -9,7 +9,7 @@
 		<result property="story" column="story"/>
 		<result property="imageUrl" column="imageUrl"/>
 		<result property="tier" column="tier"/>
-		<collection property="skills" column="{userId=userId,characterId=characterId}" javaType="java.util.ArrayList" select="selectUserCharacterSkills"/>
+		<collection property="skills" column="{userId=userId,characterId=characterId}" javaType="java.util.ArrayList" ofType="java.lang.String" select="selectUserCharacterSkills"/>
 	</resultMap>
 
     <insert id="insertUserCharacter">
@@ -80,7 +80,7 @@
 	</delete>
 
 	<insert id="insertUserCharacterSkill">
-		INSERT tb_character_skill_map (
+		INSERT tb_user_character_skill_map (
 		user_id,
 		character_id,
 		skill_id,

@@ -44,7 +44,7 @@ public class WeaponController {
     //TODO: GlobalExceptionHandler 적용
     @ExceptionHandler(Exception.class)
     public void globalExceptionHandler(Exception e){
-
+        System.out.println("[유저 무기 에러]");
     }
 }
 
