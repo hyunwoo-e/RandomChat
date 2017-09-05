@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.prisoncrush.api.rank.RankDAO">
+
+    <insert id="insertUserScore">
+		INSERT INTO tb_rank (
+      	score,
+      	user_id,
+      	regist_ymdt
+      	)
+      	VALUES
+      	(
+      	#{score},
+      	#{userId},
+      	NOW()
+      	)
+    </insert>
+
+	<select id="selectRanks" resultMap="UserCharacters">
+		SELECT
+		score AS score,
+		user_id AS userId,
+		regist_ymdt AS registYmdt
+		FROM
+		tb_rank
+	  	ORDER BY
+	  	score
+	  	LIMIT
+	  	${offset}, ${limit}
+	</select>
+</mapper>
