@@ -6,9 +6,6 @@
 	<resultMap id="UserCharacters" type="com.prisoncrush.api.model.UserCharacter">
 		<id property="userId" column="userId"/>
 		<id property="characterId" column="characterId"/>
-		<result property="story" column="story"/>
-		<result property="imageUrl" column="imageUrl"/>
-		<result property="tier" column="tier"/>
 		<collection property="skills" column="{userId=userId,characterId=characterId}" javaType="java.util.ArrayList" ofType="java.lang.String" select="selectUserCharacterSkills"/>
 	</resultMap>
 
@@ -19,32 +16,23 @@
       	regist_ymdt,
       	modify_ymdt
       	)
-      	SELECT
-      	usr.user_id,
-      	chr.character_id,
+      	VALUES
+      	(
+      	#{userId},
+      	#{characterId},
       	NOW(),
       	NOW()
-      	FROM
-      	tb_user usr, tb_character chr
-      	WHERE
-      	usr.user_id = #{userId}
-      	AND
-      	chr.character_id = #{characterId}
+      	)
     </insert>
 
 	<select id="selectUserCharacters" resultMap="UserCharacters">
 		SELECT
-		map.user_id AS userId,
-		chr.character_id AS characterId,
-		chr.story AS story,
-		chr.image_url AS imageUrl,
-		chr.tier AS tier
+		user_id AS userId,
+		character_id AS characterId
 		FROM
-		tb_user_character_map map, tb_character chr
+		tb_user_character_map
 		WHERE
-		map.user_id = #{userId}
-		AND
-		chr.character_id = map.character_id
+		user_id = #{userId}
 	</select>
 
 	<select id="selectUserCharacterSkills" resultType="java.lang.String">

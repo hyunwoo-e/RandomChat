@@ -9,9 +9,6 @@ import java.util.List;
 public class UserCharacter {
     String userId;
     String characterId;
-    String story;
-    String imageUrl;
-    int tier;
     List<String> skills;
 }
 
