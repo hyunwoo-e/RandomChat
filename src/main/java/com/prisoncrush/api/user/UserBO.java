@@ -18,12 +18,12 @@ public class UserBO {
         return userDAO.selectUser(userId);
     }
 
-    public void updateUser(String userId, int coin, int prisonKey) {
-        userDAO.updateUser(userId, coin, prisonKey);
+    public int updateUser(String userId, int coin, int prisonKey) {
+        return userDAO.updateUser(userId, coin, prisonKey);
     }
 
-    public void deleteUser(String userId) {
-        userDAO.deleteUser(userId);
+    public int deleteUser(String userId) {
+        return userDAO.deleteUser(userId);
     }
 
 }

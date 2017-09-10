@@ -11,33 +11,40 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
     UserBO userBO;
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public void create(@RequestParam(required = true) String userId) {
+    @ResponseBody
+    public ResponseEntity create(@RequestParam(required = true) String userId) {
         userBO.insertUser(userId);
-        return;
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    public User select(@PathVariable(required = true) String userId) {
-        return userBO.selectUser(userId);
+    @ResponseBody
+    public ResponseEntity<User> select(@PathVariable(required = true) String userId) {
+        User user = userBO.selectUser(userId);
+        if(user == null)
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+
+        return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{userId}/update", method = RequestMethod.POST)
-    public void update(@PathVariable(required = true) String userId, @RequestParam int coin, @RequestParam int prisonKey) {
+    @ResponseBody
+    public ResponseEntity update(@PathVariable(required = true) String userId, @RequestParam int coin, @RequestParam int prisonKey) {
         userBO.updateUser(userId, coin, prisonKey);
-        return;
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/user/{userId}/delete", method = RequestMethod.POST)
-    public void delete(@PathVariable(required = true) String userId) {
+    public ResponseEntity delete(@PathVariable(required = true) String userId) {
         userBO.deleteUser(userId);
-        return;
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     //TODO: GlobalExceptionHandler 적용
