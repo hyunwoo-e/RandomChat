@@ -20,8 +20,8 @@ public class RankBO {
         return rankDAO.selectRanks(offset, limit);
     }
 
-    public int updateScore(String userId, int score) {
-        return rankDAO.updateScore(userId, score);
+    public int updateUserScore(String userId, int score) {
+        return rankDAO.updateUserScore(userId, score);
     }
 }
 

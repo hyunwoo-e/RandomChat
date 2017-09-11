@@ -5,14 +5,14 @@
 
     <insert id="insertUserRank">
 		INSERT INTO tb_rank (
-      	score,
       	user_id,
+      	score,
       	regist_ymdt
       	)
       	VALUES
       	(
-      	#{score},
       	#{userId},
+      	#{score},
       	NOW()
       	)
     </insert>
@@ -25,15 +25,15 @@
 		FROM
 		tb_rank
 	  	ORDER BY
-	  	score
+	  	score DESC
 	  	LIMIT
 	  	${offset}, ${limit}
 	</select>
 
-	<update id="updateScore">
+	<update id="updateUserScore">
 		UPDATE tb_user
-		SET score = #{score}
-		WHERE userId = #{userId}
-		AND max_score <![CDATA[ < ]]> #{score}
+		SET max_score = #{score}
+		WHERE user_id = #{userId}
+		AND (max_score <![CDATA[<]]> #{score} OR max_score IS NULL)
 	</update>
 </mapper>

@@ -12,6 +12,6 @@ public interface RankDAO {
 
     List<Rank> selectRanks(@Param("offset") int offset, @Param("limit") int limit);
 
-    int updateScore(@Param("userId") String userId, @Param("score") int score);
+    int updateUserScore(@Param("userId") String userId, @Param("score") int score);
 }
 

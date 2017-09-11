@@ -9,5 +9,7 @@ public class User {
     int coin;
     int prisonKey;
     int maxScore;
+    String registYmdt;
+    String modifyYmdt;
 }
 

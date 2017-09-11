@@ -16,7 +16,7 @@ public class RankController {
     @RequestMapping(value = "/rank/create", method = RequestMethod.POST)
     public void insertUserRank(@RequestParam String userId, @RequestParam int score) {
         rankBO.insertUserRank(userId, score);
-        rankBO.updateScore(userId, score);
+        rankBO.updateUserScore(userId, score);
         return;
     }
 
