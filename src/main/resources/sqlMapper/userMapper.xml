@@ -23,7 +23,8 @@
         SELECT
         user_id AS userId,
         coin AS coin,
-        prison_key AS prisonKey
+        prison_key AS prisonKey,
+        max_score AS maxScore
         FROM
         tb_user
         WHERE

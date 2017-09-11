@@ -29,4 +29,11 @@
 	  	LIMIT
 	  	${offset}, ${limit}
 	</select>
+
+	<update id="updateScore">
+		UPDATE tb_user
+		SET score = #{score}
+		WHERE userId = #{userId}
+		AND max_score <![CDATA[ < ]]> #{score}
+	</update>
 </mapper>

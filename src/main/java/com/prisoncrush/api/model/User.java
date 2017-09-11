@@ -8,5 +8,6 @@ public class User {
     String userId;
     int coin;
     int prisonKey;
+    int maxScore;
 }
 

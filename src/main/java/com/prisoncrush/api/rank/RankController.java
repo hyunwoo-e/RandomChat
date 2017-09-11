@@ -1,6 +1,7 @@
 package com.prisoncrush.api.rank;
 
 import com.prisoncrush.api.model.Rank;
+import com.prisoncrush.api.user.UserBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -15,6 +16,7 @@ public class RankController {
     @RequestMapping(value = "/rank/create", method = RequestMethod.POST)
     public void insertUserRank(@RequestParam String userId, @RequestParam int score) {
         rankBO.insertUserRank(userId, score);
+        rankBO.updateScore(userId, score);
         return;
     }
 

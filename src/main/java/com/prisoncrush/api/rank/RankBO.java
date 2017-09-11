@@ -19,5 +19,9 @@ public class RankBO {
     public List<Rank> selectRanks(int offset, int limit) {
         return rankDAO.selectRanks(offset, limit);
     }
+
+    public int updateScore(String userId, int score) {
+        return rankDAO.updateScore(userId, score);
+    }
 }
 
