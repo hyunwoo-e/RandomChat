@@ -5,9 +5,9 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://ec2-18-220-97-254.us-east-2.compute.amazonaws.com:3306/prisoncrush?useSSL=false"></property>
-        <property name="username" value="prisoncrush"></property>
-        <property name="password" value="prisoncrush"></property>
+        <property name="url" value="jdbc:mysql://ec2-18-220-97-254.us-east-2.compute.amazonaws.com:3306/randomchat?useSSL=false"></property>
+        <property name="username" value="randomchat"></property>
+        <property name="password" value="randomchat"></property>
     </bean>
 
     <!--sqlSessionFactoryBean 생성-->
@@ -20,7 +20,7 @@
         <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.prisoncrush.api" />
+        <property name="basePackage" value="com.randomchat.web" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 

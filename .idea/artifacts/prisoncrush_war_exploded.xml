@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="prisoncrush:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/prisoncrush_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="prisoncrush/web/Web" />
+      <element id="javaee-facet-resources" facet="randomchat/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="prisoncrush" />
+          <element id="module-output" name="randomchat" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.7.0" />
