@@ -11,7 +11,7 @@ public interface UserDAO {
 
     User selectUser(@Param("userId") String userId);
 
-    int updateUser(@Param("userId") String userId, @Param("coin") int coin, @Param("prisonKey") int prisonKey);
+    int updateUser(@Param("userId") String userId, @Param("coin") int coin, @Param("prisonKey") int prisonKey, @Param("weaponId") String weaponId, @Param("characterId") String characterId);
 
     int deleteUser(@Param("userId") String userId);
 }

@@ -36,8 +36,8 @@ public class UserController {
 
     @RequestMapping(value = "/user/{userId}/update", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity update(@PathVariable(required = true) String userId, @RequestParam int coin, @RequestParam int prisonKey) {
-        userBO.updateUser(userId, coin, prisonKey);
+    public ResponseEntity update(@PathVariable(required = true) String userId, @RequestParam int coin, @RequestParam int prisonKey, @RequestParam String weaponId, @RequestParam String characterId) {
+        userBO.updateUser(userId, coin, prisonKey, weaponId, characterId);
         return new ResponseEntity(HttpStatus.OK);
     }
 

@@ -24,7 +24,9 @@
         user_id AS userId,
         coin AS coin,
         prison_key AS prisonKey,
-        max_score AS maxScore
+        max_score AS maxScore,
+        weapon_id AS weaponId,
+        character_id AS characterId
         FROM
         tb_user
         WHERE
@@ -44,6 +46,12 @@
         </if>
         <if test="prisonKey != null">
             prison_key = #{prisonKey},
+        </if>
+        <if test="weaponId != null">
+            weapon_id = #{weaponId},
+        </if>
+        <if test="characterId != null">
+            character_id = #{characterId},
         </if>
         modify_ymdt = NOW()
         WHERE
