@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="prisoncrush:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/prisoncrush_war_exploded</output-path>
+  <artifact type="exploded-war" name="randomchat:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/randomchat_war_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="randomchat/web/Web" />
       <element id="directory" name="WEB-INF">
@@ -28,6 +28,14 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.3.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:4.3.9.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.9.RELEASE" />
+          <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: org.apiguardian:apiguardian-api:1.0.0" />
+          <element id="library" level="project" name="Maven: org.junit.jupiter:junit-jupiter-api:5.0.0" />
+          <element id="library" level="project" name="Maven: org.junit.platform:junit-platform-commons:1.0.0" />
+          <element id="library" level="project" name="Maven: org.opentest4j:opentest4j:1.0.0" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-websocket:4.3.11.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.11.RELEASE" />
         </element>
       </element>
     </root>

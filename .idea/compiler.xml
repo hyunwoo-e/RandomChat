@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="prisoncrush" />
+        <module name="randomchat" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="prisoncrush" target="1.5" />
+      <module name="randomchat" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>
